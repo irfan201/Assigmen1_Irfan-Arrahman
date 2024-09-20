@@ -27,3 +27,14 @@ Aplikasi sederhana berbasis konsol yang ditulis dengan Kotlin untuk mengelola ke
 
 1. Clone atau unduh repositori ini.
 2. Buka terminal di direktori proyek.
+
+## Output
+
+![Screenshot 2024-09-20 103800](https://github.com/user-attachments/assets/51b76d8e-15f1-43b0-b3d1-9725cc7714d9)
+![Screenshot 2024-09-20 103800](https://github.com/user-attachments/assets/5829289e-2f73-493a-bfc0-a24327250248)
+![image](https://github.com/user-attachments/assets/8718ad41-4f31-4d78-9b3b-8a78998e0c44)
+![image](https://github.com/user-attachments/assets/21f082cb-8fcb-4b2a-988a-0e917d07ffcc)
+
+
+
+
