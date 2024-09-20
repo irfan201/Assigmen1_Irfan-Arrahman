@@ -30,10 +30,10 @@ fun main() {
 
 class User {
     private var saldo = 0
-    var pemasukan = 0
-    var pengeluaran = 0
-    val listPemasukan = mutableListOf(pemasukan)
-    val listPengeluaran = mutableListOf(pengeluaran)
+    private var pemasukan = 0
+    private var pengeluaran = 0
+    private val listPemasukan = mutableListOf(pemasukan)
+    private val listPengeluaran = mutableListOf(pengeluaran)
     private var totalPemasukan = 0
     private var totalPengeluaran = 0
 
@@ -46,20 +46,38 @@ class User {
             1 -> {
                 print("inputkan pemasukan: Rp.")
                 pemasukan = readln().toInt()
-                saldo += pemasukan
-                listPemasukan.add(pemasukan)
-                totalPemasukan = listPemasukan.sum()
-                println("total pemasukan Rp.$totalPemasukan")
+                if (pemasukan < 0) {
+                    println("tidak dapat memasukan mines")
+                } else {
+                    saldo += pemasukan
+                    listPemasukan.add(pemasukan)
+                    if (listPemasukan.first() == 0) {
+                        listPemasukan.removeFirst()
+                    }
+                    totalPemasukan = listPemasukan.sum()
+                    println(" pemasukan Rp.$pemasukan")
+                }
             }
 
             2 -> {
                 print("inputkan pengeluaran: Rp. ")
                 pengeluaran = readln().toInt()
-                saldo -= pengeluaran
-                listPengeluaran.add(pengeluaran)
-                totalPengeluaran = listPengeluaran.sum()
-                println("total pengeluaran Rp.$totalPengeluaran")
+                if (pengeluaran < 0) {
+                    println("tidak dapat memasukan mines")
+                } else {
+                    saldo -= pengeluaran
+                    listPengeluaran.add(pengeluaran)
+                    if (listPengeluaran.first() == 0) {
+                        listPengeluaran.removeFirst()
+                    }
+                    totalPengeluaran = listPengeluaran.sum()
+                    println(" pengeluaran Rp.$pengeluaran")
+                }
+
             }
+
+            else -> println("menu tidak ada")
+
         }
         println("total saldo Rp.$saldo")
     }
@@ -77,8 +95,6 @@ class User {
             println("riwayat pengeluaran")
             listPengeluaran.forEach { println("Rp.$it") }
         }
-
-
     }
 
     fun analisisTotal() {
