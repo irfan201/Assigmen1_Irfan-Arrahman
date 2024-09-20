@@ -1,7 +1,7 @@
 package com.example.assigment1_irfanarrahman
 
 fun main() {
-    val user = User()
+    val transaction = Transaction()
     while (true) {
         println("Personal Finance Manager Apllication")
         println("=======---========")
@@ -11,12 +11,12 @@ fun main() {
         println("4. Analisis Total")
         println("5. Keluar")
         print("masukan menu: ")
-        val menu = readln().toIntOrNull()
+        val menu = readln().trim().toIntOrNull()
         when (menu) {
-            1 -> user.pemasukanPengeluaran()
-            2 -> println("saldo anda sebesar Rp.${user.getSaldo()}")
-            3 -> user.riwayatTransaksi()
-            4 -> user.analisisTotal()
+            1 -> transaction.IncomeExpense()
+            2 -> println("saldo anda sebesar Rp${transaction.getSaldo()}")
+            3 -> transaction.historyTransaction()
+            4 -> transaction.totalAnalysis()
             5 -> {
                 println("keluar")
                 break
@@ -28,50 +28,50 @@ fun main() {
 
 }
 
-class User {
+class Transaction {
     private var saldo = 0
-    private var pemasukan = 0
-    private var pengeluaran = 0
-    private val listPemasukan = mutableListOf(pemasukan)
-    private val listPengeluaran = mutableListOf(pengeluaran)
-    private var totalPemasukan = 0
-    private var totalPengeluaran = 0
+    private var income = 0
+    private var expense = 0
+    private val listIncome = mutableListOf(income)
+    private val listExpense = mutableListOf(expense)
+    private var totalIncome = 0
+    private var totalExpense = 0
 
-    fun pemasukanPengeluaran() {
+    fun IncomeExpense() {
         println("1.  pemasukan")
         println("2.  pengeluaran")
         print("pilih : ")
-        val menu = readln().toIntOrNull()
+        val menu = readln().trim().toIntOrNull()
         when (menu) {
             1 -> {
                 print("inputkan pemasukan: Rp.")
-                pemasukan = readln().toInt()
-                if (pemasukan < 0) {
+                income = readln().trim().toInt()
+                if (income < 0) {
                     println("tidak dapat memasukan mines")
                 } else {
-                    saldo += pemasukan
-                    listPemasukan.add(pemasukan)
-                    if (listPemasukan.first() == 0) {
-                        listPemasukan.removeFirst()
+                    saldo += income
+                    listIncome.add(income)
+                    if (listIncome.first() == 0) {
+                        listIncome.removeFirst()
                     }
-                    totalPemasukan = listPemasukan.sum()
-                    println(" pemasukan Rp.$pemasukan")
+                    totalIncome = listIncome.sum()
+                    println(" pemasukan Rp $income")
                 }
             }
 
             2 -> {
-                print("inputkan pengeluaran: Rp. ")
-                pengeluaran = readln().toInt()
-                if (pengeluaran < 0) {
+                print("inputkan pengeluaran: Rp  ")
+                expense = readln().trim().toInt()
+                if (expense < 0) {
                     println("tidak dapat memasukan mines")
                 } else {
-                    saldo -= pengeluaran
-                    listPengeluaran.add(pengeluaran)
-                    if (listPengeluaran.first() == 0) {
-                        listPengeluaran.removeFirst()
+                    saldo -= expense
+                    listExpense.add(expense)
+                    if (listExpense.first() == 0) {
+                        listExpense.removeFirst()
                     }
-                    totalPengeluaran = listPengeluaran.sum()
-                    println(" pengeluaran Rp.$pengeluaran")
+                    totalExpense = listExpense.sum()
+                    println(" pengeluaran Rp $expense")
                 }
 
             }
@@ -79,28 +79,26 @@ class User {
             else -> println("menu tidak ada")
 
         }
-        println("total saldo Rp.$saldo")
+        println("total saldo Rp $saldo")
     }
 
-    fun getSaldo(): Int {
-        return saldo
-    }
+    fun getSaldo() = saldo
 
-    fun riwayatTransaksi() {
-        if (listPemasukan.isEmpty() && listPengeluaran.isEmpty()) {
+    fun historyTransaction() {
+        if (listIncome.isEmpty() && listExpense.isEmpty()) {
             println("riwayat transaksi tidak ada silahkan masukan pemasukan atau pengeluaran")
         } else {
             println("riwayat pemasukan")
-            listPemasukan.forEach { println("Rp.$it") }
+            listIncome.forEach { println("Rp $it") }
             println("riwayat pengeluaran")
-            listPengeluaran.forEach { println("Rp.$it") }
+            listExpense.forEach { println("Rp $it") }
         }
     }
 
-    fun analisisTotal() {
+    fun totalAnalysis() {
         println(
             " jumlah pemasukan sebesar : " +
-                    "Rp.$totalPemasukan \n jumlah pengeluaran sebesar: Rp.$totalPengeluaran \n total saldo: Rp.$saldo"
+                    "Rp.$totalIncome \n jumlah pengeluaran sebesar: Rp.$totalExpense \n total saldo: Rp.$saldo"
         )
 
     }
